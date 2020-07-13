@@ -1,7 +1,5 @@
 #include "renderer.h"
 
-#include <SDL_image.h>
-
 #include <iostream>
 #include <string>
 
@@ -38,8 +36,7 @@ Renderer::Renderer(const std::size_t screen_width,
         std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
     }
 
-    //surface = SDL_LoadBMP("../img/ball.bmp");
-    SDL_Surface *tank_surface = IMG_Load("../img/tank.png");
+    SDL_Surface *tank_surface = SDL_LoadBMP("../img/tank.bmp");
     if (!tank_surface) {
         std::cerr << "Surface could not be created.\n";
         std::cerr << " SDL_Error: " << SDL_GetError() << "\n";
@@ -51,7 +48,7 @@ Renderer::Renderer(const std::size_t screen_width,
     }
     SDL_FreeSurface(tank_surface);
 
-    SDL_Surface *bullet_surface = IMG_Load("../img/bullet.png");
+    SDL_Surface *bullet_surface = SDL_LoadBMP("../img/bullet.bmp");
     if (!bullet_surface) {
         std::cerr << "Surface could not be created.\n";
         std::cerr << " SDL_Error: " << SDL_GetError() << "\n";
@@ -63,7 +60,7 @@ Renderer::Renderer(const std::size_t screen_width,
     }
     SDL_FreeSurface(bullet_surface);
 
-    SDL_Surface *spaceship_surface = IMG_Load("../img/spaceship.png");
+    SDL_Surface *spaceship_surface = SDL_LoadBMP("../img/spaceship.bmp");
     if (!spaceship_surface) {
         std::cerr << "Surface could not be created.\n";
         std::cerr << " SDL_Error: " << SDL_GetError() << "\n";

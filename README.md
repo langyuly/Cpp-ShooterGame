@@ -38,8 +38,6 @@ This project satisfies the necessary rubic:
 * SDL2 >= 2.0
   * All installation instructions can be found [here](https://wiki.libsdl.org/Installation)
   * Note that for Linux, an `apt` or `apt-get` installation is preferred to building from source.
-* SDL_image >= 2.0
-  * All information can be found [here](https://www.libsdl.org/projects/SDL_image/)
 * gcc/g++ >= 5.4
   * Linux: gcc / g++ is installed by default on most Linux distros
   * Mac: same deal as make - [install Xcode command line tools](https://developer.apple.com/xcode/features/)
