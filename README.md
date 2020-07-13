@@ -3,7 +3,7 @@
 This is a simple shooter game developped in C++ as the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). 
 
 Move tank to left or right, and shoot the spaceship with "space" key to score.
-![Demo](img/play.gif)
+<img src="snake_game.gif"/>
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
@@ -27,4 +27,4 @@ Move tank to left or right, and shoot the spaceship with "space" key to score.
 1. Clone this repo.
 2. Make a build directory in the top level directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
-4. Run it: `./PongGame`.
+4. Run it: `./ShooterGame`.
