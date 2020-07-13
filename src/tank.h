@@ -1,6 +1,8 @@
 #ifndef TANK_H
 #define TANK_H
 
+#include <memory>
+
 #include "bullet.h"
 #include "movingobject.h"
 
