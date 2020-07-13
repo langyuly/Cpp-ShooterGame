@@ -3,7 +3,7 @@
 This is a simple shooter game developped in C++ as the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). 
 
 Move tank to left or right, and shoot the spaceship with "space" key to score.
-<img src="snake_game.gif"/>
+<img src="img/play.gif"/>
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
