@@ -5,11 +5,11 @@
 #include "movingobject.h"
 
 Game::Game(std::size_t grid_width, std::size_t grid_height)
-    : tank(grid_width, grid_height),
-      bullet_container(grid_width, grid_height),
-      spaceship_container(grid_width, grid_height) {
+    : tank(grid_width, grid_height) {
+    bullet_container = std::make_shared<BulletContainer>(grid_width, grid_height),
+    spaceship_container = std::make_unique<SpaceshipContainer>(grid_width, grid_height);
     tank.SetPosition(grid_width / 2, grid_height - 1);
-    tank.SetBulletContainer(&bullet_container);
+    tank.SetBulletContainer(bullet_container);
 }
 
 void Game::Run(Controller const &controller, Renderer &renderer,
@@ -28,7 +28,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
         //controller.HandleInput(running, snake);
         controller.HandleInput(running, tank);
         Update();
-        renderer.Render(tank, bullet_container.GetObjects(), spaceship_container.GetObjects());
+        renderer.Render(tank, bullet_container->GetObjects(), spaceship_container->GetObjects());
 
         frame_end = SDL_GetTicks();
 
@@ -52,31 +52,31 @@ void Game::Run(Controller const &controller, Renderer &renderer,
         }
     }
 
-    spaceship_container.Stop();
+    spaceship_container->Stop();
 }
 
 void Game::Update() {
-    bullet_container.MoveAll();
-    spaceship_container.MoveAll();
-    int spaceship_killed = DetectCollision();
-    score += spaceship_killed;
-    bullet_container.DestroyInvalidBullets();
-    spaceship_container.DestroyInvalidSpaceships();
+    // recompute position of all moving objects
+    bullet_container->MoveAll();
+    spaceship_container->MoveAll();
+    // compute number of collisions between bullet and spaceship
+    score += DetectCollision();
+    // delete all objects that are invalid inside the vector
+    bullet_container->DestroyInvalidBullets();
+    spaceship_container->DestroyInvalidSpaceships();
 }
 
 int Game::DetectCollision() {
     int collision = 0;
 
     std::lock_guard<std::mutex> lck(mtx);
-    std::vector<MovingObject> &bullets = bullet_container.GetObjects();
-    std::vector<MovingObject> &spaceships = spaceship_container.GetObjects();
+    std::vector<MovingObject> &bullets = bullet_container->GetObjects();
+    std::vector<MovingObject> &spaceships = spaceship_container->GetObjects();
 
-    //for (auto bullet : bullets) {
     for (int i = 0; i < bullets.size(); i++) {
         if (bullets[i].GetInvalid()) {
             continue;
         }
-        //for (auto spaceship : spaceships) {
         for (int j = 0; j < spaceships.size(); j++) {
             if (spaceships[j].GetInvalid()) {
                 continue;

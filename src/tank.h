@@ -9,14 +9,16 @@ class Tank : public MovingObject {
     // construtor / destructor
     Tank(int grid_width, int grid_height);
 
-    void SetBulletContainer(BulletContainer *container);
+    // setter & getter
+    void SetBulletContainer(std::shared_ptr<BulletContainer> container);
 
+    // basic funtionalities of tank
     void MoveLeft();
     void MoveRight();
     void Shoot();
 
    private:
-    BulletContainer *bullet_generator;
+    std::shared_ptr<BulletContainer> bullet_container;
 };
 
 #endif

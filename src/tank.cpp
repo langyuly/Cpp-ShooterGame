@@ -13,10 +13,10 @@ void Tank::MoveRight() {
     m_pos_x += m_speed;
 }
 
-void Tank::SetBulletContainer(BulletContainer *container) {
-    bullet_generator = container;
+void Tank::SetBulletContainer(std::shared_ptr<BulletContainer> container) {
+    bullet_container = container;
 }
 
 void Tank::Shoot() {
-    bullet_generator->GenerateNewBullet(m_pos_x, m_pos_y);
+    bullet_container->GenerateNewBullet(m_pos_x, m_pos_y);
 }

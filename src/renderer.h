@@ -14,8 +14,8 @@ class Renderer {
              const std::size_t grid_width, const std::size_t grid_height);
     ~Renderer();
 
-    void Render(Tank const tank, std::vector<MovingObject> &bullets,
-                std::vector<MovingObject> &spaceships);
+    void Render(Tank const &tank, std::vector<MovingObject> const &bullets,
+                std::vector<MovingObject> const &spaceships);
     void UpdateWindowTitle(int score, int fps);
 
    private:

@@ -19,14 +19,16 @@ class Game {
 
    private:
     Tank tank;
-    BulletContainer bullet_container;
-    SpaceshipContainer spaceship_container;
+    std::shared_ptr<BulletContainer> bullet_container;
+    std::unique_ptr<SpaceshipContainer> spaceship_container;
 
     int score{0};
 
     std::mutex mtx;
 
+    // main logic of the game
     void Update();
+    // detect collisions of bullets with spaceships
     int DetectCollision();
 };
 

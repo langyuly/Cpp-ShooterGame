@@ -84,8 +84,8 @@ Renderer::~Renderer() {
     SDL_Quit();
 }
 
-void Renderer::Render(Tank const tank, std::vector<MovingObject> &bullets,
-                      std::vector<MovingObject> &spaceships) {
+void Renderer::Render(Tank const &tank, std::vector<MovingObject> const &bullets,
+                      std::vector<MovingObject> const &spaceships) {
     SDL_Rect block;
     block.w = screen_width / grid_width;
     block.h = screen_height / grid_height;
