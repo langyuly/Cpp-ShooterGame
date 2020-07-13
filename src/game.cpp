@@ -5,9 +5,10 @@
 #include "movingobject.h"
 
 Game::Game(std::size_t grid_width, std::size_t grid_height)
-    : tank(grid_width / 2, grid_height - 1),
+    : tank(grid_width, grid_height),
       bullet_container(grid_width, grid_height),
       spaceship_container(grid_width, grid_height) {
+    tank.SetPosition(grid_width / 2, grid_height - 1);
     tank.SetBulletContainer(&bullet_container);
 }
 

@@ -1,19 +1,16 @@
 #include "tank.h"
 
+Tank::Tank(int grid_width, int grid_height)
+    : MovingObject(grid_width, grid_height) {
+    m_speed = 1.0f;
+}
+
 void Tank::MoveLeft() {
-    m_pos_x -= speed;
+    m_pos_x -= m_speed;
 }
 
 void Tank::MoveRight() {
-    m_pos_x += speed;
-}
-
-float Tank::GetPositionX() const {
-    return m_pos_x;
-}
-
-float Tank::GetPositionY() const {
-    return m_pos_y;
+    m_pos_x += m_speed;
 }
 
 void Tank::SetBulletContainer(BulletContainer *container) {
@@ -21,5 +18,5 @@ void Tank::SetBulletContainer(BulletContainer *container) {
 }
 
 void Tank::Shoot() {
-    bullet_generator->GenerateNewBullet(m_pos_x, m_pos_y - 1.0f);
+    bullet_generator->GenerateNewBullet(m_pos_x, m_pos_y);
 }

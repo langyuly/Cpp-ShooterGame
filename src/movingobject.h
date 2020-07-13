@@ -7,9 +7,7 @@
 class MovingObject {
    public:
     // constructor and destructor
-    MovingObject(int grid_width, int grid_height)
-        : grid_width(grid_width),
-          grid_height(grid_height) {}
+    MovingObject(int grid_width, int grid_height);
 
     // Getters and Setters
     void SetSpeed(float init_speed);
@@ -26,8 +24,8 @@ class MovingObject {
     void Move();
     bool Collide(MovingObject& other);
 
-   private:
-    float m_speed{0.05f};
+   protected:
+    float m_speed;
 
     float m_pos_x;
     float m_pos_y;

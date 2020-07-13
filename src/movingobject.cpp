@@ -2,6 +2,12 @@
 
 #include <iostream>
 
+MovingObject::MovingObject(int grid_width, int grid_height)
+    : grid_width(grid_width),
+      grid_height(grid_height) {
+    m_speed = 0.05f;
+}
+
 void MovingObject::SetSpeed(float init_speed) {
     m_speed = init_speed;
 }
@@ -43,12 +49,12 @@ void MovingObject::Move() {
 }
 
 bool MovingObject::Collide(MovingObject& other) {
-    int this_x = static_cast<int>(m_pos_x);
-    int this_y = static_cast<int>(m_pos_y);
-    int other_x = static_cast<int>(other.m_pos_x);
-    int other_y = static_cast<int>(other.m_pos_y);
+    float a_min_y = std::min(m_pos_y, m_pos_y - m_speed * m_dir_y);
+    float a_max_y = std::max(m_pos_y, m_pos_y - m_speed * m_dir_y);
+    float b_min_y = std::min(other.m_pos_y, other.m_pos_y - other.m_speed * other.m_dir_y);
+    float b_max_y = std::max(other.m_pos_y, other.m_pos_y - other.m_speed * other.m_dir_y);
 
-    return (this_x == other_x && this_y == other_y);
+    return (static_cast<int>(m_pos_x) == static_cast<int>(other.m_pos_x) && a_min_y <= b_max_y && b_min_y <= a_max_y);
 }
 
 std::vector<MovingObject>& MovingObjectContainer::GetObjects() {

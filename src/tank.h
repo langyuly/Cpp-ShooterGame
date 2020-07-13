@@ -2,30 +2,20 @@
 #define TANK_H
 
 #include "bullet.h"
+#include "movingobject.h"
 
-class Tank {
+class Tank : public MovingObject {
    public:
     // construtor / destructor
-    Tank(float xpos, float ypos)
-        : m_pos_x(xpos),
-          m_pos_y(ypos) {}
-
-    // Getter and Setter
-    float GetPositionX() const;
-    float GetPositionY() const;
+    Tank(int grid_width, int grid_height);
 
     void SetBulletContainer(BulletContainer *container);
 
-    //
     void MoveLeft();
     void MoveRight();
     void Shoot();
 
    private:
-    float speed{1.0f};
-    float m_pos_x;
-    float m_pos_y;
-
     BulletContainer *bullet_generator;
 };
 
